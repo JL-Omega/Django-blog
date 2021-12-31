@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Article - {{post.id}}</title>
+{% endblock %}
+
+{% block content %}
+
+<h1>Le blog de Jean-Luc</h1>
+
+    <article class="post-detail" >
+        <h2>{{post.title|upper}}</h2>
+        <img src="{{post.thumbnail.url}}" alt="image ici">
+        <h5>Publié par <i>{{post.author_or_default}}</i> le {{post.created_on}}</h5>
+        <p>{{post.content|safe}}</p>
+        <p>
+            <a href="{% url 'posts:update' pk=post.id %}">Modifier</a>
+            <a href="{% url 'posts:delete' pk=post.id %}">Supprimer</a>
+        </p>
+    </article>
+
+{% endblock %}

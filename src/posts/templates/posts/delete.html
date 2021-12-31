@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Article - {{post.id}}</title>
+{% endblock %}
+
+{% block content %}
+
+<h1>Le blog de Docstring</h1>
+
+    <form method="POST">
+    {% csrf_token %}
+
+        <p>Voulez-vous vraiment supprimer: <strong>{{post|upper}}</strong>?</p>
+
+        <input type="submit" value="Supprimer">
+    </form>
+
+{% endblock %}

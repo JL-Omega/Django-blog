@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Accueil du blog</title>
+{% endblock %}
+
+{% block content %}
+
+<h1>Le blog de Jean-Luc</h1>
+{% for post in posts %}
+    <article>
+        <div class="post-title">
+            <h2>{{post.title|upper}}</h2>
+        </div>
+        <h5 class="post-author">Publié par <i>{{post.author_or_default}}</i> le {{post.created_on}}</h5>
+        <p class="post-excerpt">{{post.content|safe|truncatewords:20}}</p>
+    </article>
+    <div class="lien">
+        <form action="{% url 'posts:show' pk=post.id %}">
+            <button class="btn btn-submit">Lire la suite</button>
+        </form>
+    </div>
+{% if not forloop.last %}
+<hr class="ligne">
+{% endif %}
+{% endfor %}
+
+{% endblock %}
